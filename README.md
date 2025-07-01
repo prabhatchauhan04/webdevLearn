@@ -1,13 +1,20 @@
-**📚 Hi! This repository documents my learning and progress as I study Web Development, including:**
+## 📚 **Hi there!**
 
-🖥️ HTML & CSS & Tailwind
+This is my journey learning **Web Development**, including:
 
-⚙️ JavaScript (Vanilla + ES6+) & Typescript
+### 🖥️ **Frontend**
+- **HTML**, **CSS**, and *Tailwind*
 
-🌐 React (Frontend)
+### ⚙️ **JavaScript & TypeScript**
+- Vanilla **JavaScript (ES6+)**
+- *TypeScript* for type safety
 
-🗄️ Node.js + Express (Backend)
+### 🌐 **React**
+- Building UIs with **React**
 
-💾 MongoDB (Database) & Postgresql & Prisma
+### 💾 **Databases**
+- **MongoDB**
+- **PostgreSQL** with **Prisma**
 
-🔗 MERN Stack Projects 
+### 🔗 **MERN Stack**
+- Full-stack apps using **MongoDB**, **Express**, **React**, and **Node.js**
