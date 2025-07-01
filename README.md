@@ -1,4 +1,4 @@
-📚 Hi! This repository documents my learning and progress as I study Web Development, including:
+**📚 Hi! This repository documents my learning and progress as I study Web Development, including:**
 
 🖥️ HTML & CSS & Tailwind
 
