@@ -12,7 +12,7 @@ function Teacher() {
 }
 // Person ke andar meine prototype naam ki key daal di, that can be used
 // by an object if we create then using Person as constructor function
-Person.prototype = Object.create(Object.prototype);
+Person.prototype = Object.create(Object.prototype); // ye line is not necessary because koi bhi function/ya kuch bhi ho uska prototype ka parent is Object.prototype by default
 Student.prototype = Object.create(Person.prototype);
 Teacher.prototype = Object.create(Person.prototype);
 
