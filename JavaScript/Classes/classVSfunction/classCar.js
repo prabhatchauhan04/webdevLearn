@@ -7,6 +7,7 @@ class Car{
     }
     // by default prototype mein ban gya ab ye function . toh ab sab use kr paenge
     // Class ne help krdi prototype mein add nhi krna pda alag se khud . 
+    // apne aap Car.prototype ka papa will be Object.prototype
     print() {
         console.log("Name " , this.name);
         console.log("Price " , this.price);
