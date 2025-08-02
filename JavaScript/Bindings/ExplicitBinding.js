@@ -20,15 +20,19 @@ function print(city, country) {
     this.country = country;
 }
 
-// // pehli argument will become 'this'
-// print.call(person2, "Delhi", "India"); // now inside print this will point to person2
-// console.log(person2);
 
+// pehli argument will become 'this'
+print.call(person2, "Delhi", "India"); // now inside print this will point to person2
+console.log(person2);
+
+
+/*
 print.apply(person, ["Delhi", "India"]); // iss baar this k alawa arguments ko array mein bhejenge
+console.log(person)
+*/
 
-
-// let f = print.bind(person, "Delhi", "India"); // function mein bind krdiya ye arguments
-// f();
-// console.log(person);
-
-print();
+/*
+let f = print.bind(person, "Delhi", "India"); // function mein bind krdiya ye arguments
+f();
+console.log(person);
+*/
