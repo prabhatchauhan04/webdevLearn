@@ -15,7 +15,8 @@ setTimeout(()=>{
 // Every time you do ul.innerHTML += ..., the entire innerHTML is re-parsed.
 // The browser re-creates all child elements from scratch, not just the new one.
 // So, if you already had 10 items, adding the 11th means re-parsing all 11 from a string. That’s why it’s O(N).
-
+// purana part padhega pura parse and phir uske andar add krrha hoga ye 
+// ul.innerHTML = ul.innerHTML + item
 */
 
 let li = document.createElement('li');
