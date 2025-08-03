@@ -28,6 +28,14 @@ console.log(li)
 li.classList.add('movie');
 console.log(li)
 
+/*
+Method	                       What it does
+element.classList.add()	       Adds a class
+element.classList.remove()	   Removes a class
+element.classList.toggle()	   Adds if missing, removes if present
+element.classList.contains()   Returns true/false if the class is present
+*/
+
 setTimeout(()=>{
     ul.appendChild(li); // O(1) kra dega add bcoz sirf ek element add kr rhe 
 },3000)

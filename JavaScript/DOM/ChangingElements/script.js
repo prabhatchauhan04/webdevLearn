@@ -13,6 +13,8 @@ let inp = document.querySelector('#name');
 // input elements ke andar we use value
 inp.value = "Aditya" // isse pehle se value dali aajaegi in input tag 
 // we can't use inner Text/HTML in input
+// .value is both getter and setter
+// value set bhi krdi aur isse (inp.value) agar log kre toh print bhi hojaega value
 
 
 

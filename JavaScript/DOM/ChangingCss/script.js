@@ -15,3 +15,8 @@ setInterval(()=>{
     document.querySelector('body').classList.toggle('myPara'); // ye class myPara lga rha 
 }, 20);
 
+/*
+classList.toggle('className')
+This adds the class if it's not present, and removes it if it is present.
+It "toggles" the presence of the class on and off.
+*/
