@@ -2,6 +2,7 @@
 let btn = document.querySelector('button');
 
 // Fetch API Example
+// promise based
 let URL = 'https://meowfacts.herokuapp.com/';
 
 function loadData(data) {

@@ -4,12 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- internally xml http request (xhr) hi use kr rhe dono fetch aur axios 
+    simply means ye browser ko refresh nhi kregi request bhejne pr 
+    -->
+    <!-- CDN : Content delivery network 
+        bcoz abhi backend hai hi nhi toh npm install krke use nhi kr skte
+        abhi hum cdn se use kr lenge 
+        axios ko include krna padta hai 
+        fetch already present hota hai browser me
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        ab CDN ka url change ho sakta hai toh isliye hum cdn ki jagah direct file hi daal lenge yhi jo ab krenge hum
+        jo hume iss cdn se mil rhi hai usi file ko download krke yhi pe rakh lenge
+    -->
+    <!-- "axios min" refers to the minified and gzipped version of the Axios JavaScript library 
+    (e.g., axios.min.js), which is smaller and more performant for production environments, while "axios" generally refers to the full library. 
+    -->
+    <script src="./axios/axiosmin.js"></script>
 </head>
 <body>
     <h1>Meow Facts</h1>
 
     <button>Click me</button>
 
-    <script src="script2.js"></script>
+    <script src="script3.js"></script>
 </body>
 </html>
