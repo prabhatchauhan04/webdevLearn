@@ -15,6 +15,8 @@ function loadData(data) {
     document.body.appendChild(p);
 }
 
+// async function se kuch return karte hain toh woh promise return karta hai
+
 async function getData(MEOW_URL) {
     // axios mein json ko parse karne ki zarurat nahi hoti
     // axios humein parsed json hi de deta hai
