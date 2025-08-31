@@ -1,0 +1,72 @@
+<!-- index.html naam rakhna jaruri hai file ka warna configure krne k baad hi chalega dusre naam pr -->
+<!-- agar static folder(static ya public naam hota hai usually) mein index.html padi hai toh by default whi load hogi
+hum chahte hai jo bhi files koi bhi access krle woh static folder k andar ho
+ab jo file hume chaiye woh agar static folder k andar hai toh hum usko directly access kr skte hai bina kisi route k
+aur agar static folder k andar na ho toh server ko request krdega uss file k liye
+-->
+<!-- index.html mein jo kaam krunga woh server pr request phek dega
+ ye bhi ek tarika hai to send request to server using browser 
+-->
+<!--
+static mein jo index.html file hai johi mere browser pr load horhi toh yhi frontend ka kaam kr rha hai
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="todo-heading">
+            TODO APP
+        </h1>
+
+        <form action="/todo" method="post">
+            <input type="text" name="task" placeholder="Enter Task Name" required>
+             <!-- jo bhi hum input mein likhenge woh 'task' naam k variable mein chala jayega aur backend pr isko read kr lenge -->
+             <!-- aur yeh form jab submit hoga tab yeh /todo path pr post request bhejega -->
+             <!-- aur yeh kaam app.js mein hoga jaha humne /todo path k liye post request handle krni hai -->
+             <!-- aur yeh kaam hum fetch API se bhi kr skte hai jaisa ki file.js mein kiya hai -->
+             <!-- lekin yeh form ka apna hi ek tareeka hai jisse hum server pr request bhej skte hai -->
+             <!-- aur yeh tareeka simple hai aur easily samajh mein aa jata hai -->
+             <!-- ismein hume jyada code likhne ki jarurat nahi padti -->
+             <!-- isliye hum yeh tareeka use kar rahe hai -->
+            <button type="submit">Add Todo</button>
+        </form> <!-- app.js mein /todo path k liye code hai hi -->
+    </div>
+
+    <ul class="taskList">
+            
+    </ul>
+
+    <script src="./file.js"></script>
+</body>
+</html>
+
+<!-- 
+
+Key Points:
+
+action="/todo" and method="post"
+→ This form will send a POST request to the backend (/todo) when submitted.
+→ The user submits the form, here's what happens:
+The browser creates an HTTP POST request.
+It sends that POST request to the URL specified in action.
+The data is taken from the form’s input fields and sent in the request body (not in the URL).
+The browser waits for a response from the server.
+The page reloads with whatever the server responds (HTML, redirect, etc.).
+
+name="task"
+→ The backend (req.body.task) will use this name to access form input.
+→ This is how data is sent from frontend to backend using a form.
+
+-->
+
+
+
+
+
