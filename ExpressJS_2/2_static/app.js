@@ -26,6 +26,17 @@ app.get('/', (req, res) => {
     */
 });
 
+/*
+When your browser loads the index.html file, it does not automatically get your CSS and JS files just
+because they are linked in the HTML. Instead, the browser sees the <link rel="stylesheet" href="styles.css"> 
+or <script src="file.js"></script> tags and makes separate HTTP requests to the server for those files.
+So, your server needs to respond to these requests.
+Why You Need Routes for CSS and JS Files ?
+When the browser requests http://localhost:4444/, your server responds by sending the index.html file.
+Then the browser requests http://localhost:4444/styles.css for the CSS file.
+The browser also requests http://localhost:4444/file.js for the JS file.
+Your server has to listen for those requests and serve those files. Otherwise, the browser will get a 404 (file not found) error.
+*/
 
 // ab humne server ko bataya ki jab bhi koi styles.css ya file.js ke liye request kare to ye file bhej dena
 // ye karna bahut hi bura practice hai, isliye hum express.static middleware use karte hai
@@ -34,7 +45,7 @@ app.get('/styles.css', (req, res) => {
     res.sendFile(path.join(__dirname, '/styles.css'));
 });
 
-// browser mein javascrip pheki toh woh usse console mein run krdega browser k
+// browser mein javascript pheki toh woh usse console mein run krdega browser k
 app.get('/file.js', (req, res) => {
     res.sendFile(path.join(__dirname, '/file.js'));
 });
