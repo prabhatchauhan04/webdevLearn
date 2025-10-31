@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{!-- Placeholder for page title, replaced by server --}}{{title}}</title>
+</head>
+
+<body>
+    <h1>Todo List-3</h1>
+
+    <ul>
+        {{!-- Loop over array 'arr' passed from server --}}
+        {{#each arr as |d|}}
+            {{!-- 'd' is the current item in the loop --}}
+            <li>{{!-- Show the value of the current item --}}{{d}}</li>
+        {{/each}}
+    </ul>
+
+</body>
+
+</html>

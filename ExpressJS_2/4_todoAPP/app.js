@@ -2,13 +2,25 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+// this is todo with Client side rendering (CSR)
 
+// When you open http://localhost:4444/ in your browser, the browser requests the path /.
+// express.static checks if there is a file named index.html in the folder static.
+// If it finds index.html, it serves it automatically.
+// This is standard behavior: index.html is the default file for a directory in static serving.
+// That’s why your HTML appears in the browser like a frontend page, even though you didn’t write app.get('/').
 app.use(express.urlencoded({ extended: true })); // ye post request ke body ko read karne ke liye lagate hain
+// agar get request '/' route ki hoti defined [app.get('/')] toh static files serve nahi hoti 
 
-app.use(express.static('static')); // ye static folder ke andar jo bhi file hain unko serve karne ke liye lagate hain
+
+app.use(express.static(path.join(__dirname, 'static'))); // ye static folder ke andar jo bhi file hain unko serve karne ke liye lagate hain
 
 let todos = [
-    // {id: 1, name: 'Learn Node.js'},
+    // {id: 1, task: 'Learn Node.js'},
+    { id: 1, task: 'Cricket' },
+    { id: 2, task: 'Swim' },
+    { id: 3, task: 'Coding' },
+    { id: 4, task: 'Dance' },
 ];
 
 // Endpoint to get all todos as JSON
@@ -23,6 +35,15 @@ app.get('/todo/:id' , (req, res) => {
     res.send(data);
 });
 
+
+
+app.get('/todo-delete/:id', (req, res) => {
+    const { id } = req.params;
+    todos = todos.filter(todo => todo.id != +id);
+    res.send(todos);
+})
+
+
 // form jab submit hoga toh /todo pr bhej rha . yha woh accept krli .
 // name attribute jo form ke input field me hai usi ke basis pr req.body me data aayega
 // submit krte hi page reload hojaega and a url hojaega '/todo' but post request ka url kyu aaya ? 
@@ -32,14 +53,13 @@ app.get('/todo/:id' , (req, res) => {
 // ab jaruri hai ki POST request jane k baad bhi page reload na ho toh uske liye hum get request k url pr redirect kr denge
 // bcoz agar reload kra toh same request phirse chali jayegi aur phirse same todo add hogi
 // but thats not what we want . we want ki ek baar hi add ho
-// 
 app.post('/todo', (req, res) => {
     const { task } = req.body;
     todos.push({ id: todos.length + 1, task }); // sirf 'task' likhne se 'task': task apne aap lelega
     // res.send(todos); // ye bhej denge toh page reload hoga aur url me /todo aa jayega aur baar baar add hota rahega data on reload
     res.redirect('/'); // redirect kr denge home page pr . ispr express.static ke through index.html serve ho jayega
     // ab static folder ki index.html , file.js , styles.css dobara run hongi 
-    // aur wapas se js file run hote hi purana sab jo chla woh gayab hojayega bcoz server se dobara get request hogi / ke liye
+    // aur wapas se js file run hote hi purana sab jo chla woh gayab hojayega bcoz server se dobara get request hogi '/' ke liye
     // isliye hum 'fetch' (AJAX) ka use krenge in js file 
 });
 
