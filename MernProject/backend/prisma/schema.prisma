@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {  
+  id         String   @id @default(uuid()) @db.Uuid   // 'String' type stored as UUID in DB; @id = primary key; @default(uuid()) = auto-generate a UUID; @db.Uuid = store as UUID column type
+  email      String   @unique   // 'String' type; @unique = ensures no two users have the same email
+  name       String?   // 'String?' = optional (nullable) string field for user name
+  password   String    // 'String' type; required field for user password
+  createdAt  DateTime @default(now())   // 'DateTime' type; @default(now()) = automatically set to current timestamp when created
+  updatedAt  DateTime @updatedAt   // 'DateTime' type; @updatedAt = automatically updates timestamp on every record update
+}
+
+
+
+

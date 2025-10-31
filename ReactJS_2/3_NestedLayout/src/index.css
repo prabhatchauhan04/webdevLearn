@@ -1,0 +1,36 @@
+/* Base style for all nav links */
+.navlink {
+  text-decoration: none;     /* Remove default underline */
+  margin-left: 10px;         /* Add spacing between links */
+}
+
+/* Style for links that haven't been clicked yet */
+.navlink:link {
+  color: black;
+}
+
+/* Style for links that have already been visited */
+.navlink:visited {
+  color: black;
+}
+
+/* Style when the mouse hovers over the link */
+.navlink:hover {
+  color: blue;               /* Change color on hover */
+  text-decoration: underline;/* Show underline on hover */
+}
+
+/* Style when the link is being clicked */
+.navlink:active {
+  color: white;              /* Text turns white on click */
+  background-color: black;   /* Background turns black on click */
+}
+
+/* Style for the current/active page link (set manually)
+bcoz navlink active link pr active class lga deta hai
+toh jo clicked hoga uspr ye props lagega
+*/
+.active {
+  text-decoration: underline;     /* Underline current link */
+  color: rgb(74, 74, 253) !important; /* Highlight current link in blue */
+}
