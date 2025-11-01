@@ -1,0 +1,52 @@
+==============================
+ACID PROPERTIES IN SQL DATABASES
+==============================
+
+ACID ensures that database transactions are reliable, safe, and predictable. 
+Every transaction (like insert, update, delete) in a SQL database follows these 4 rules.
+
+1. ATOMICITY
+------------
+- "All or nothing" principle.
+- A transaction is treated as a single unit: 
+    - Either everything in the transaction succeeds.
+    - Or nothing happens at all (rollback occurs if any part fails).
+- Example:
+    Transferring $100 from Account A to Account B:
+    - Debit $100 from A
+    - Credit $100 to B
+    If credit fails, debit is also undone.
+
+2. CONSISTENCY
+-------------
+- Database always moves from one valid state to another valid state.
+- All constraints, triggers, and rules are preserved after a transaction.
+- Example:
+    - If a rule says account balance cannot go negative, after a transaction this rule must still hold.
+- Ensures data integrity is never broken.
+
+3. ISOLATION
+------------
+- Each transaction operates independently.
+- Transactions cannot see the intermediate results of other ongoing transactions.
+- Prevents conflicts and ensures concurrent transactions don’t corrupt data.
+- Example:
+    - Two users updating the same record:
+        - Transaction 1 reads balance
+        - Transaction 2 reads balance
+        - Both update simultaneously without isolation → wrong balance
+    - Isolation prevents this.
+
+4. DURABILITY
+-------------
+- Once a transaction is committed, it is permanent.
+- Even if the system crashes immediately after commit, the changes remain.
+- Example:
+    - After transferring money, even if the server crashes, the DB still shows the updated balances.
+
+==============================
+Summary:
+- ACID = Atomic, Consistent, Isolated, Durable
+- Guarantees safe, reliable, and predictable database transactions
+- Critical for banking systems, ecommerce, and any system where data accuracy matters
+==============================

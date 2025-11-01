@@ -1,0 +1,42 @@
+==============================
+NoSQL BASE Properties
+==============================
+
+BASE stands for:
+----------------
+B - Basically Available:
+    - System guarantees availability.
+    - Every request gets a response (may be stale or partial).
+
+S - Soft State:
+    - Data may change over time, even without new updates.
+    - Temporary inconsistency is allowed.
+
+E - Eventual Consistency:
+    - Eventually, all replicas converge to the same value.
+    - Guarantees consistency over time, not immediately.
+
+--------------------------
+Example: Social Media Post (like Facebook)
+--------------------------
+
+Scenario:
+- A person in India posts a photo.
+- Database: NoSQL distributed DB (e.g., Cassandra, MongoDB).
+
+1. Basically Available (B):
+    - The post is acknowledged immediately: "Post uploaded!"
+    - Even if USA servers are down, India servers accept it.
+
+2. Soft State (S):
+    - Post may not appear instantly to everyone.
+    - Some users in India see it immediately, some see it after a few seconds.
+
+3. Eventual Consistency (E):
+    - After a short time, the post appears to all users globally (including USA).
+    - All database replicas eventually have the same data.
+
+--------------------------
+Key Idea:
+BASE = Fast responses + temporary inconsistencies + eventual global consistency.
+Perfect for highly distributed apps like social media platforms.

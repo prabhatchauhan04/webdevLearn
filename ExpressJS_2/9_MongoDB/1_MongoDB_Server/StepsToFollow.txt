@@ -1,0 +1,46 @@
+1. Ek folder open krke vs code k andar then Create a folder named lets say 'data'.
+2. type command inside the terminal :--
+    mongod --dbpath=data
+3. How to check server of mongodb is running or not : 
+    Go to browser and type :--    localhost:27017
+======================================================================================================================
+The default TCP port 27017 is used by MongoDB to accept client-server connections
+======================================================================================================================
+# Start MongoDB server manually
+Command:
+    mongod --dbpath=<folder_path>
+Example:
+    mongod --dbpath=data
+Explanation:
+- `mongod` → starts the MongoDB server.
+- `--dbpath=data` → tells MongoDB where to store the database files.
+  - `data` is a folder you create manually (e.g., inside your project folder).
+- After running this, the server is live and you can connect to it using:
+    - MongoDB Shell (`mongo`)
+    - Compass
+    - VS Code MongoDB extension
+======================================================================================================================
+
+1. MongoDB Server (mongod) or MongoDB Community Server
+What it is: The actual database engine that stores your data.
+When used: When you want a database running locally on your PC.
+Example: You want to test your Node.js app on your own computer.
+Key point: Without it, Compass or VS Code cannot connect to a database locally.
+
+2. MongoDB Compass
+What it is: A visual tool (GUI) to look at and manage your MongoDB database.
+When used: When you want to see data, collections, or queries visually instead of typing commands.
+Example: You want to quickly check what documents are in a collection.
+Key point: Compass does not run the database itself, it just connects to a running database.
+
+3. MongoDB Atlas
+What it is: A cloud-hosted MongoDB service.
+When used: When you don’t want to install MongoDB locally.
+Example: Your app is live on the internet and needs a database that everyone can access.
+Key point: Atlas runs on the cloud, so your PC just connects to it.
+
+Super Simple Analogy :--
+MongoDB Server = The library (the actual place where books are stored).
+Compass = The librarian’s interface to check books.
+Atlas = Someone else’s library in the cloud you can access from anywhere.
+

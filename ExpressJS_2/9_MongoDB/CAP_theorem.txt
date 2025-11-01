@@ -1,0 +1,51 @@
+========================
+CAP THEOREM NOTES
+========================
+
+Definition:
+CAP theorem is a concept in distributed systems that states:
+In a distributed database, you can achieve **at most 2 out of 3 properties** if network partitions occur.
+
+Properties:
+1. Consistency (C):
+   - Every read gets the **most recent write** or an error.
+   - All nodes see the **same data** at any time.
+   - Example: Writing x = 5, any read from any node returns 5.
+
+2. Availability (A):
+   - Every request (read/write) **receives a response**, even if it may not be the latest value.
+   - The system **never refuses a request**.
+
+3. Partition Tolerance (P):
+   - System keeps working **even if nodes can't communicate** due to network failures.
+   - Essential in real distributed systems since network failures are inevitable.
+
+CAP Combinations:
+1. CP System (Consistency + Partition Tolerance):
+   - Keeps data consistent, even during network partitions.
+   - Some requests may be **rejected** to ensure consistency.
+   - Example with Bank Account:
+     - If India server and US server are partitioned:
+       - Bank ensures account balance is correct (C)
+       - Some requests from US may fail temporarily (P)
+       - Availability (A) is sacrificed until partition resolves
+   - Real DB example: HBase, MongoDB (strong consistency mode)
+
+2. AP System (Availability + Partition Tolerance):
+   - Always responds, even if data is temporarily inconsistent.
+   - Uses **eventual consistency** (data converges eventually).
+   - Real-life example: Social Media Feed
+       - A user posts a status in India
+       - US friends can still see **old feed** immediately (A)
+       - Post propagates later; all nodes eventually see the update (P)
+       - Consistency (C) is temporarily sacrificed
+   - Real DB example: CouchDB, DynamoDB
+
+3. CA System (Consistency + Availability):
+   - Works only if **no network partition** occurs.
+   - Rare in real distributed systems.
+
+Key Takeaways:
+- Partition tolerance is mandatory in distributed systems.
+- You usually choose between **Consistency** or **Availability** during partitions.
+- CAP theorem is crucial for designing databases, caches, and distributed storage.
