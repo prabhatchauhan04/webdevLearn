@@ -1,0 +1,2 @@
+This project is a complete skeleton for projects using [ react + express + node + postgresql + prisma + socket.io ] .
+{can be edited to work for any react express project as a skeleton / base structure.} 

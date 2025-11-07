@@ -48,3 +48,40 @@ export async function signup({ email, name, password }) {
     }
 
 }
+
+
+
+export async function signin({ email, password }) {
+    let user = await prisma.user.findUnique({
+        where: { email }
+    })
+
+    if (!user) {
+        let err = new Error("Invalid Login email");
+        err.status = 401;
+        throw err;
+    }
+
+    try {
+        const ok = await bcrypt.compare(password, user.password);
+        if (!ok) {
+            let err = new Error("Invalid Login password");
+            err.status = 401;
+            throw err;
+        }
+
+        let token = jwt.sign({ name: user.name, email, id: user.id }, env.JWT_SECRET);
+        return {
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+            },
+            token
+        }
+    } catch (error) {
+        return error;
+    }
+
+}
+

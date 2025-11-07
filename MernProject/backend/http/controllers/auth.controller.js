@@ -12,7 +12,7 @@ export async function postSignup(req, res, next) {
 
         const { email, name, password } = req.body;
 
-        let data = await signup({ email, name, password, id: user.id });
+        let data = await signup({ email, name, password });
         console.log(data);
         res.status(200).json({
             data
@@ -52,6 +52,8 @@ export async function postSignin(req, res, next) {
 
 export async function getMe(req, res, next) {
     return res.status(200).json({
-        user: req.user
+        data :{
+            user: req.user
+        }
     })
 }
