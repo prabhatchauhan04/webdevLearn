@@ -1,0 +1,43 @@
+Question : 
+
+You need to copy a large file efficiently without loading
+it all into memory.
+Complete the missing part
+
+const fs = require('fs');
+
+function copyFile(src, dest) {
+    // TODO: stream data from src to dest
+}
+
+copyFile('large.mp4', 'backup.mp4');
+
+
+Answer :
+
+const fs = require('fs');
+
+function copyFile(src, dest) {
+  // Make a "read stream" — this reads the file little by little
+  const readStream = fs.createReadStream(src);
+
+  // Make a "write stream" — this writes the file little by little
+  const writeStream = fs.createWriteStream(dest);
+
+  // Connect the reader to the writer.
+  // This means: every chunk of data read from the source
+  // gets sent directly to the destination.
+  // We never load the whole file into memory at once.
+  readStream.pipe(writeStream);
+
+  // When the writing is done, say we're finished
+  writeStream.on('finish', () => {
+    console.log('File copied successfully.');
+  });
+
+  // If something goes wrong while reading or writing, show the error
+  readStream.on('error', console.error);
+  writeStream.on('error', console.error);
+}
+
+copyFile('large.mp4', 'backup.mp4');

@@ -166,7 +166,61 @@ app.listen(4444);
 
 
 
+/*
 
+# 1️⃣ `express.urlencoded()`
+
+* Used for **HTML form submissions** (from `<form>` on your page).
+* Handles `application/x-www-form-urlencoded` data.
+* Converts form fields into `req.body` object.
+
+**Example:**
+
+```html
+<form action="/submit" method="POST">
+  <input name="username" />
+  <input name="password" />
+</form>
+```
+
+```js
+app.use(express.urlencoded({ extended: true }));
+
+app.post('/submit', (req, res) => {
+  console.log(req.body); // { username: 'alice', password: '1234' }
+});
+```
+
+---
+
+# 2️⃣ `express.json()`
+
+* Used for **JSON data** sent from the frontend (AJAX, fetch, React, etc.).
+* Handles `application/json` payloads.
+* Converts JSON into `req.body` object.
+
+**Example (React/JS fetch):**
+
+```js
+fetch('/submit', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ username: 'alice', password: '1234' })  // this stringifies the JS object to JSON formatted string.
+});
+```
+
+```js
+app.use(express.json()); // converts string back to JS object
+
+app.post('/submit', (req, res) => {
+  console.log(req.body); // { username: 'alice', password: '1234' }
+});
+```
+// When sending data via HTTP requests (like fetch or axios):
+// HTTP sends text over the network.
+// You cannot directly send a JS object, because the server expects a string in JSON format.
+// JSON.stringify converts your object into a string that the server can understand.
+*/
 
 
 

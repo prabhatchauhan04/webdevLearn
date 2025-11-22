@@ -12,8 +12,10 @@ Command:
 Example:
     mongod --dbpath=data
 Explanation:
-- `mongod` → starts the MongoDB server.
-- `--dbpath=data` → tells MongoDB where to store the database files.
+- `mongod` → starts the MongoDB server (ye necessary hai to interact with the local mongodb database warna phir cloud wala use kr sakta 
+hai that is mongodb atlas waha pr server nhi chalana padta bcoz cloud pr pehle se mongodb hi sambhal leta woh sb . but locally chalane k 
+liye we need to start server manually using command 'mongod').
+- `--dbpath=data` → tells MongoDB where to store the database files (if not provided then official file/path pr store krega).
   - `data` is a folder you create manually (e.g., inside your project folder).
 - After running this, the server is live and you can connect to it using:
     - MongoDB Shell (`mongo`)

@@ -41,3 +41,65 @@
 </body>
 
 </html>
+
+{{!-- 
+HBS = Handlebars
+A template engine used mainly with Express.js to render HTML on the server.
+
+What it does (simple explanation)
+Lets you write HTML pages that contain variables and logic (like loops, conditions).
+Express fills in the data and sends the final HTML to the browser.
+Similar to EJS or Pug templates.
+
+🔧 HBS Example
+template.hbs
+<h1>Hello {{name}}</h1>
+
+<ul>
+  {{#each items}}
+    <li>{{this}}</li>
+  {{/each}}
+</ul>
+
+Express code:
+res.render('template', {
+  name: "Bob",
+  items: ["apple", "banana", "mango"]
+});
+
+Output:
+<h1>Hello Bob</h1>
+<ul>
+  <li>apple</li>
+  <li>banana</li>
+  <li>mango</li>
+</ul>
+___________________________________________________________________________________________________________________________________
+
+EJS stands for Embedded JavaScript.
+It’s a template engine for Node/Express that lets you write HTML pages with JavaScript inside them.
+🚀 Simple Explanation
+Think of EJS as HTML + JavaScript mixed together so the server can fill in data before sending it to the browser.
+
+ex -> 
+🧩 Tiny Example :--
+
+index.ejs:
+<h1>Hello <%= name %></h1>
+
+Express code:
+res.render('index', { name: "Alice" });
+
+Browser sees:
+Hello Alice
+___________________________________________________________________________________________________________________________________
+
+| Feature        | **EJS**                                        | **HBS (Handlebars)**                        |
+| -------------- | ---------------------------------------------- | ------------------------------------------- |
+| Syntax Style   | Looks like **JavaScript inside HTML**          | Looks like **mustache templates** (`{{ }}`) |
+| Logic          | Allows **full JS code** (loops, if, functions) | **Very limited logic** (helpers needed)     |
+| Learning Curve | Easy if you know JS                            | Easy even for non-coders                    |
+| Flexibility    | More powerful                                  | More strict & safer                         |
+| Template Feel  | Feels like coding                              | Feels like pure templating                  |
+| Common Use     | Developer-heavy projects                       | Clean & simple templates (blogs, emails)    |
+ --}}

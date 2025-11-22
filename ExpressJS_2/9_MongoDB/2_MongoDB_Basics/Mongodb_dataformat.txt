@@ -1,0 +1,32 @@
+BSON = Binary JSON
+It’s the data format MongoDB uses internally to store documents.
+Why not just JSON?
+JSON is text-based → slower to parse, larger in size
+BSON is binary → compact, fast, supports more types
+
+_______________________________________________________________________
+
+JSON (JavaScript Object Notation)
+What it is: A way to store and share data that looks like text.
+Format example:
+
+{
+  "name": "Alice",
+  "age": 25,
+  "isStudent": true
+}
+
+Key points:
+Human-readable (easy for us to read).
+Works great for sending data over the internet.
+Stores strings, numbers, booleans, arrays, objects.
+
+
+BSON (Binary JSON)
+What it is: Like JSON, but in binary format (not plain text).
+Why binary: Computers can read and write it faster, and it can store more types of data like dates and binary files.
+Example: You don’t usually see it because it’s not meant to be read by humans, but MongoDB uses it internally.
+Key points:
+Faster for computers to process.
+Can store extra data types JSON cannot (like Date, Binary, Decimal128).
+Mainly used in databases like MongoDB.
