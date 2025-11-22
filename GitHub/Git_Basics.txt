@@ -20,7 +20,11 @@ development. Before Git became mainstream, version control systems were used by 
 (Source Code Control System). SCCS was a proprietary software that was used to manage the history of code. It was expensive and 
 not very user-friendly. Git was created to replace SCCS and to make version control more accessible and user-friendly. 
 
-
+# .gitkeep = empty placeholder file
+.gitkeep ek empty file hai.
+Ye Git ke liye use hoti hai empty folders ko track karne ke liye.
+Git by default empty folders ko track nahi karta. Agar aapko folder repo me dikhana hai, to .gitkeep file bana ke add karte ho.
+Git tracks files, not folders.
 
 
 
