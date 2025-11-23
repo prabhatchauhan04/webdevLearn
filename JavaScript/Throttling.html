@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<!-- 
+Throttling in JavaScript :--
+Throttling is a technique to limit how frequently a function can be executed over time.
+Even if an event (like scroll or resize) fires many times rapidly, the throttled function runs at most once per specified interval.
+ -->
+
+<body>
+
+    <input id="inp" type="text" placeholder="Enter Name">
+
+    <button id="btn">Search</button>
+
+    <script>
+        let inp = document.querySelector('#inp');
+        let btn = document.getElementById('btn');
+
+
+        function throttling(fn) {
+            let isCalled = false;
+
+            return function () {
+                if (isCalled == true) {
+                    return;
+                }
+                btn.setAttribute('disabled', true);
+                isCalled = true;
+                fn();
+                setTimeout(() => {
+                    btn.removeAttribute('disabled');
+
+                    isCalled = false;
+                }, 3000);
+            }
+        }
+
+        btn.addEventListener('click', throttling((e) => {
+            console.log(inp.value);
+        }))
+
+
+    </script>
+
+</body>
+
+</html>

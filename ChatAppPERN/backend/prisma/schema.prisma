@@ -13,15 +13,47 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {  
-  id         String   @id @default(uuid()) @db.Uuid   // 'String' type stored as UUID in DB; @id = primary key; @default(uuid()) = auto-generate a UUID; @db.Uuid = store as UUID column type
-  email      String   @unique   // 'String' type; @unique = ensures no two users have the same email
-  name       String?   // 'String?' = optional (nullable) string field for user name
-  password   String    // 'String' type; required field for user password
-  createdAt  DateTime @default(now())   // 'DateTime' type; @default(now()) = automatically set to current timestamp when created
-  updatedAt  DateTime @updatedAt   // 'DateTime' type; @updatedAt = automatically updates timestamp on every record update
+model User {
+  id            String               @id @default(uuid()) @db.Uuid
+  name          String?
+  email         String               @unique
+  password      String
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+  conversationA DirectConversation[] @relation("UserA")
+  conversationB DirectConversation[] @relation("UserB")
+  // conversation DirectConversation[] @relation("User")
+  Message       Message[]
 }
 
+model DirectConversation {
+  id        String   @id @default(uuid()) @db.Uuid
+  userAId   String   @db.Uuid
+  userBId   String   @db.Uuid
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
+  userA    User      @relation("UserA", fields: [userAId], references: [id], onDelete: Cascade)
+  userB    User      @relation("UserB", fields: [userBId], references: [id], onDelete: Cascade)
+  messages Message[]
 
+  @@unique([userAId, userBId])
+  @@index([userAId])
+  @@index([userBId])
+  @@index([updatedAt])
+}
 
+model Message {
+  id             String   @id @default(uuid()) @db.Uuid
+  conversationId String   @db.Uuid
+  senderId       String   @db.Uuid
+  text           String   @db.Text
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  conversation DirectConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender       User               @relation(fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId, createdAt])
+  @@index([senderId])
+}
