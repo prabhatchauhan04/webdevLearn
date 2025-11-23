@@ -1,0 +1,16 @@
+Passport.js is a popular authentication middleware for Node.js. It's a library jo easy krdeti hai humara different types of authentication 
+because in real world apps aap agar chaho say google se authentication krna (gmail wagerah se for example) toh inn ki api's available
+hoti hai jo ye khud dete h google wagerah platforms , toh hume sb kuch khud krna padega agar hum api end points use krenge google ka 
+But using passportjs humara saara kaam yhi krdeta hai with very small pieces of code phir hum khud google api end point ye woh user se 
+info lekr end point pr request bhejna aur token generate krna etc etc kaam nhi krna padta . makes our life way easier . bcoz say bs 
+google login daalna easy lg rha but jab aapko multiple tarike se login option daalna hai toh sb boht hard hojata hai isiliye passport 
+use krlete . Ex -> passport hume 500+ strategies deta hai i.e., login krwane k option like using google , facebook , github etc .
+People use Passport.js because it provides a unified, consistent, and modular way to handle authentication, even though things like JWT, 
+sessions, and cookies already exist. JWT, sessions, and cookies are methods of storing or transporting authentication data, but Passport 
+is an authentication framework that plugs into Express and handles the actual process of verifying a user, integrating strategies like 
+local login, OAuth (Google, GitHub), JWT verification, and more. Without Passport, you would need to manually write password verification, 
+session handling, OAuth flows, redirect logic, token validation, and route protection. Passport abstracts all that into plug-and-play 
+“strategies.” For example, you can swap between local login, Google login, and JWT authentication with minimal code changes because 
+Passport standardizes how authentication is done across different methods. In short, Passport isn’t a replacement for JWT or cookies — it 
+is the middleware that orchestrates authentication, providing structure, consistency, reusable strategies, and reduced boilerplate for 
+real-world apps.

@@ -1,0 +1,38 @@
+⭐ AUTHENTICATION
+Authentication is the process of verifying a user’s identity.
+
+✔ Tiny Code Example
+// AUTHENTICATION → Check identity
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+
+    if (email === "user@example.com" && password === "12345") {
+        return res.send("Authenticated ✔");
+    }
+
+    res.status(401).send("Invalid credentials ❌");
+});
+
+✔ Real-Life Examples :
+Showing your ID card at a building gate
+Entering a password to unlock your phone
+Logging into Facebook
+
+⭐ AUTHORIZATION
+Authorization is the process of determining what an authenticated user is allowed to access.
+
+✔ Tiny Code Example
+// AUTHORIZATION → Check permissions
+function isAdmin(req, res, next) {
+    if (req.body.role === "admin") return next();
+    res.status(403).send("Access denied ❌");
+}
+
+app.get('/admin-panel', isAdmin, (req, res) => {
+    res.send("Welcome Admin ✔");
+});
+
+✔ Real-Life Examples :
+Only employees can enter the office floor
+Only admins can delete users
+Students cannot access teacher portal

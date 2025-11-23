@@ -90,3 +90,23 @@ res.render(view, data) → server builds HTML and sends to browser (SSR)
 Browser just displays HTML; no JS needed for initial page
 */
 
+/*
+HANDLEBARS- hbs
+While using serving static file, the data is send to the browser in the chunky manner (i.e. little data is send according to the 
+need) with the help of app.use(express.static()) middleware, but it is not efficient to write backend code
+
+Hence , we use SERVER SIDE RENDERING - sending the whole file at once with the help of handlebars
+
+It helps to throw the index file at once and it is used as .hbs file as with this, HTML file is just not only made on backend but we 
+can use javascript variables as well in the file
+
+For this , install hbs :--
+> npm install hbs
+
+WE can access .hbs in js file with the help of res.render , it is a response where client gets index.hbs file.
+
+res.render('index')
+
+In order to use handlebars in our javascript file, we need to set it by :--
+> app.set('view engine','hbs')
+*/

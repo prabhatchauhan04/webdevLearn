@@ -1,0 +1,105 @@
+---
+
+# 📌 **Notes: Cookies, Sessions, JWT & Session Management**
+
+---
+
+## 🍪 **Cookies**
+
+* Small pieces of data stored in the **browser**.
+* Automatically sent with every HTTP request to the server.
+* Can store: session ID, user preferences, tokens.
+* Have attributes for security:
+
+  * **HttpOnly** → JS can’t access
+  * **Secure** → only sent over HTTPS
+  * **SameSite** → protects from CSRF
+* Size limit: ~4KB.
+
+**Use for:** storing session IDs or small authentication data.
+
+---
+
+## 🗂️ **Sessions**
+
+* Server-side storage of user data (user ID, roles, login state).
+* Browser only stores a **session ID** (usually in a cookie).
+* Server looks up the session ID → retrieves user info from memory/DB.
+* Requires server storage (memory, Redis, DB).
+
+**Pros:** very secure, server-controlled.
+**Cons:** not good for fully stateless APIs.
+
+**Use for:** traditional web apps, dashboards, websites with login.
+
+---
+
+## 🔑 **JWT (JSON Web Token)**
+
+* A cryptographically signed token stored on client-side (localStorage or cookie).
+* Contains user data (payload) like user ID, role, expiry.
+* Server does **NOT** store session data.
+* Server verifies token signature → authenticates user.
+
+**Pros:** stateless, scalable, good for APIs/microservices.
+**Cons:** cannot be easily invalidated until expiry.
+
+**Use for:** SPAs, mobile apps, microservices, REST APIs.
+
+---
+
+## 🔐 **JWT vs Cookies/Sessions**
+
+| Feature        | Cookies         | Sessions          | JWT                       |
+| -------------- | --------------- | ----------------- | ------------------------- |
+| Stored Where?  | Browser         | Server            | Browser                   |
+| Server Memory? | ❌               | ✔                 | ❌                         |
+| Stateless?     | ❌               | ❌                 | ✔                         |
+| Easy Logout?   | ✔               | ✔                 | ❌ (needs token blacklist) |
+| Best for       | Basic auth data | Traditional login | APIs / SPAs               |
+
+---
+
+## 🛠️ **Session Management (How Apps Keep Users Logged In)**
+
+Session management refers to **how the server or application keeps track of logged-in users**.
+
+It includes:
+
+* Setting cookies
+* Creating session IDs
+* Managing session store (Redis, DB)
+* Verifying JWT tokens
+* Expiry & refresh logic
+* Logout handling
+* Security measures (CSRF, XSS protection)
+
+**Two main types:**
+
+### 1. **Stateful Session Management**
+
+* Server stores all session data.
+* Client stores only a session ID.
+* Uses cookies + sessions.
+
+**Example:** Express-session, PHP sessions.
+
+### 2. **Stateless Session Management**
+
+* Server stores NO session data.
+* Client stores a token (JWT).
+* Server only validates the token every request.
+
+**Example:** REST APIs, mobile apps, microservices.
+
+---
+
+# 📝 **Super Short Summary**
+
+* **Cookies**: store small data in browser (mostly session ID or JWT).
+* **Sessions**: server stores user login state; browser only has ID.
+* **JWT**: token-based login; no server storage; good for APIs.
+* **Session Management**: techniques to keep users authenticated using either sessions or JWT.
+
+---
+
