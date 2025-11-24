@@ -2,8 +2,9 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
+// express.json() = “Parse incoming JSON requests so I can access data in req.body.”
 app.use(express.json()); // Axios ke liye middleware
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true})); 
 app.use(express.static(path.join(__dirname, 'public')));
 
 
