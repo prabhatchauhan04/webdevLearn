@@ -18,8 +18,8 @@ app.get('/world', (req, res) => {
 
 app.get('/user', (req, res) => {
     res.send({
-        name: 'kartik',
-        email: 'kartik@cb.com',
+        name: 'prabhat',
+        email: 'prabhat@cb.com',
         password: 'password'
     })
 })
@@ -38,3 +38,5 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
+// Unit Testing = Testing each function or module separately to ensure it behaves exactly as expected.
