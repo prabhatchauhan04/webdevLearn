@@ -27,6 +27,13 @@ function Parent() {
     </div>
   );
 }
+
+/*
+Render Fix 1 :-
+Parent ko needed nhi thi state bcoz show to Child mein kr rhe the toh humne uthakr State bna hi Child mein di .
+Ab bs Child aur GrandChild rerender honge , na ki Parent .
+*/
+
 const RenderFix1 = () => {
   return (
     <div>
