@@ -248,3 +248,217 @@ function MyComponent() {
 * Functional components can do **everything class components can**, but in a more **declarative and flexible way**.
 
 */
+/*
+React Fragments – Notes
+Definition:
+React Fragment lets you group multiple elements without adding extra DOM nodes.
+Helps return multiple children from a component cleanly.
+Syntax:
+<React.Fragment>...</React.Fragment>
+or shorthand:
+<>...</>
+___________________________________________________________________________________________________________________________________
+Absolutely! Let’s merge the **concept + code + explanation** into **one concise example** for your `MyFragment`.
+
+---
+
+### **Custom Fragment Example (with explanation)**
+
+```jsx
+import React from "react";
+
+// Simple custom fragment
+function MyFragment({ children }) {
+  // children can be single element or array of elements
+  // React can render an array of elements directly
+  return children;
+}
+
+function App() {
+  return (
+    <MyFragment>
+      <h1>Title</h1>
+      <p>Description</p>
+      <button>Click Me</button>
+    </MyFragment>
+  );
+}
+
+export default App;
+```
+
+---
+
+### **How it works**
+
+1. JSX normally **doesn’t allow multiple siblings**:
+
+```jsx
+return <h1></h1> <p></p>; // ❌ Error
+```
+
+2. When using `MyFragment`:
+
+```jsx
+<MyFragment>
+  <h1></h1>
+  <p></p>
+</MyFragment>
+```
+
+* `children` is **already an array of React elements**:
+
+```js
+[
+  <h1>Title</h1>,
+  <p>Description</p>,
+  <button>Click Me</button>
+]
+```
+
+* Returning `children` → React renders them **directly in the DOM** without extra wrappers.
+
+---
+
+### **Output in DOM**
+
+```html
+<h1>Title</h1>
+<p>Description</p>
+<button>Click Me</button>
+```
+
+✅ No extra `<div>` or wrapper added.
+
+---
+
+___________________________________________________________________________________________________________________________________
+---
+
+# **React Performance Optimization Hooks / HOC**
+
+---
+
+## **1️⃣ React.memo**
+
+**What it is:**
+
+* Higher Order Component (HOC) that **memoizes a component**.
+* Prevents re-render if **props haven’t changed**.
+
+**Why use it:**
+
+* Useful for functional components that receive props but don’t need to re-render on every parent render.
+
+**Example:**
+
+```jsx
+const Child = React.memo(({ name }) => {
+  console.log("Child rendered");
+  return <div>{name}</div>;
+});
+
+function Parent() {
+  const [count, setCount] = React.useState(0);
+
+  return (
+    <div>
+      <Child name="Alice" /> { Won’t re-render when count changes }
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+```
+
+✅ `Child` renders **only if `name` changes`.
+
+---
+
+## **2️⃣ useMemo**
+
+**What it is:**
+
+* Hook that **memoizes a value or the result of a computation**.
+* Recomputes **only when dependencies change**.
+
+**Why use it:**
+
+* Avoids expensive recalculations on every render.
+
+**Example:**
+
+```jsx
+const expensiveCalculation = (num) => {
+  console.log("Calculating...");
+  return num * 2;
+};
+
+function App({ number }) {
+  const result = React.useMemo(() => expensiveCalculation(number), [number]);
+
+  return <div>Result: {result}</div>;
+}
+```
+
+✅ `expensiveCalculation` runs **only when `number` changes**, not on every render.
+
+---
+
+## **3️⃣ useCallback** ✅
+
+**What it is:**
+
+* Hook that **memoizes a function** so its **reference stays the same** across renders.
+* Prevents unnecessary re-renders in **child components that receive functions as props**.
+
+**Why use it:**
+
+* Every render creates **new function instances**.
+* Passing functions to memoized children can still trigger **re-renders** unless the function is memoized.
+
+**Example:**
+
+```jsx
+function Parent() {
+  const [count, setCount] = React.useState(0);
+
+  // Memoized function
+  const increment = React.useCallback(() => {
+    setCount(c => c + 1);
+  }, []); // empty array → function never changes
+
+  return <Child onClick={increment} />;
+}
+
+const Child = React.memo(({ onClick }) => {
+  console.log("Child rendered");
+  return <button onClick={onClick}>Increment</button>;
+});
+```
+
+**Why we use `React.memo` with `useCallback`:**
+
+1. `useCallback` → keeps the **function reference stable**.
+2. `React.memo` → prevents the child from re-rendering if **props haven’t changed**.
+3. Together → `Child` re-renders **only when truly necessary**.
+
+---
+
+## **4️⃣ Quick Comparison Table**
+
+| Hook / HOC    | Memoizes            | Use Case                                        |
+| ------------- | ------------------- | ----------------------------------------------- |
+| `React.memo`  | Component           | Avoid re-render if props unchanged              |
+| `useMemo`     | Value / Computation | Expensive calculation optimization              |
+| `useCallback` | Function            | Stable function reference for memoized children |
+
+---
+
+## **5️⃣ TL;DR**
+
+* **React.memo:** memoize a component → skip re-render if props unchanged
+* **useMemo:** memoize a value → avoid expensive recalculation
+* **useCallback:** memoize a function → avoid re-rendering child components due to new function references
+
+---
+*/

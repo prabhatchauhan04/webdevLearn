@@ -25,3 +25,13 @@ export const counterSlice = createSlice({
 
 export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 export default counterSlice.reducer;
+
+/*
+What is a Slice?
+A slice in RTK is basically a piece of your Redux state along with the reducers and actions that operate on it.
+Think of it as a self-contained module of Redux logic:
+It has initial state.
+It has reducers (functions that modify that state).
+It automatically generates action creators for each reducer.
+It can also handle async actions via extraReducers.
+*/

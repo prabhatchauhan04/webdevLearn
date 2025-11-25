@@ -54,6 +54,75 @@ createRoot(document.getElementById("root")).render(
 /*
 ---
 
+# **React State & Immutability – Notes**
+
+### **1️⃣ What “Immutable” means**
+
+* Immutable = **value cannot be changed directly**.
+* Instead of changing the original value, you **create a new copy with updated data**.
+
+---
+
+### **2️⃣ Why React state is immutable**
+
+* React uses **state immutability** to detect **changes efficiently**.
+* When you call `setState` or `setCount`, React **compares old state vs new state** to decide what to re-render.
+* If you mutate state directly, React **may not detect changes** → UI won’t update.
+
+---
+
+### **3️⃣ Example – WRONG way (mutable)**
+
+```jsx
+const [numbers, setNumbers] = React.useState([1, 2, 3]);
+
+// ❌ Direct mutation
+numbers.push(4);
+setNumbers(numbers); // React might not re-render
+```
+
+**Problem:**
+
+* `numbers` is mutated in place → reference is same → React thinks state didn’t change
+
+---
+
+### **4️⃣ Example – RIGHT way (immutable)**
+
+```jsx
+const [numbers, setNumbers] = React.useState([1, 2, 3]);
+
+// ✅ Create a new array
+setNumbers([...numbers, 4]); // React detects change and re-renders
+```
+
+**Explanation:**
+
+* `[...]` creates a **new array** → state reference changes → React re-renders component
+
+---
+
+### **5️⃣ Key points**
+
+1. Always **create a new copy** of state when updating arrays or objects
+
+   * Array → use `map`, `filter`, `concat`, spread `[...]`
+   * Object → use spread `{ ...obj, key: value }`
+2. Never mutate state directly
+3. Helps React **efficiently detect changes**
+
+---
+
+### **6️⃣ TL;DR**
+
+> React state is **immutable**. You should **never mutate state directly**, always return a **new copy** so React can re-render correctly.
+
+---
+*/
+
+/*
+---
+
 # ✅ **What is Rendering in React?**
 
 **Rendering = React creates UI elements from your components and displays them on the screen.**
