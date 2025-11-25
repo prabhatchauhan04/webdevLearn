@@ -14,6 +14,11 @@ const App = () => {
     justifyContent: 'space-evenly'
   }
 
+  /*
+   Ab page refresh nhi horha but ye dikkat hai ki ab url change nhi horha it stays on localhost:5173/ thats it.
+   toh woh /home , /about and /contact wagerah url mein lane k liye with also no page reload react-router use krenge
+  */
+
   return (
     <div>
       <div className="btnGroups" style={btnCSS}>

@@ -79,3 +79,93 @@ const App = () => {
 };
 
 export default App;
+
+
+
+/*
+Great question — and this is **exactly where many people get confused.**
+Let’s clear it up cleanly:
+
+---
+
+# ✅ **What happens when you have *no* dependency array?**
+
+Example:
+
+```js
+useEffect(() => {
+  // effect
+  return () => {
+    // cleanup
+  };
+});
+```
+
+### ✔️ 1. **The effect runs after every render**
+
+Because no dependency array = “run on every render.”
+
+### ✔️ 2. **The cleanup DOES run — but not on unmount only**
+
+This is the part many people miss.
+
+Cleanup runs **before the effect runs again**, *every time* (except the first mount).
+
+### So the sequence is:
+
+```
+Initial mount → effect runs
+Re-render → cleanup runs → effect runs again
+Next re-render → cleanup runs → effect runs again
+...
+Unmount → final cleanup runs
+```
+
+### So the cleanup **absolutely does run**, and it runs VERY often.
+
+---
+
+# 🔥 Example with a socket (why this is bad)
+
+If you do this:
+
+```js
+useEffect(() => {
+  const socket = io.connect();
+
+  return () => {
+    socket.disconnect();
+  };
+});
+```
+
+Then on **every re-render**:
+
+* You create a new socket
+* You disconnect the old socket
+* You create again
+* and again
+* and again…
+
+This causes:
+❌ Multiple rapid connect/disconnect events
+❌ Flickering connections
+❌ Performance issues
+❌ Lost messages
+
+---
+
+# 🧠 Summary
+
+### With **no dependency array**:
+
+* Effect: runs on **every render**
+* Cleanup: runs **before each re-run**, and **on unmount**
+
+### With **empty array `[]`**:
+
+* Effect: runs **only on mount**
+* Cleanup: runs **only on unmount**
+
+---
+*/
