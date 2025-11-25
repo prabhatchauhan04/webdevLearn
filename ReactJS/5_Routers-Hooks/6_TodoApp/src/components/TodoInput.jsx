@@ -88,3 +88,74 @@ But... what if we want to use React AND want, or really (like really, really) ne
 
 That’s where refs come in to the story. --pheww finally!!
 */
+/*
+Ah! You’re asking **why `useRef` is used here instead of a state variable** for the input in this `TodoInput` component. Let’s break it down clearly.
+
+---
+
+### **1️⃣ How it works in the code**
+
+```js
+const inpRef = useRef();
+```
+
+* `inpRef` creates a **reference to the DOM element** (the `<input>`).
+* `inpRef.current` points to the actual input element.
+* You can directly access `inpRef.current.value` to get the input’s current value without needing state.
+
+Then in `addTodoHandler()`:
+
+```js
+addTodo(inpRef.current.value);
+inpRef.current.value = "";
+```
+
+* Reads the input value
+* Clears the input after adding
+
+---
+
+### **2️⃣ Why not use state (`useState`)**
+
+If you used state instead:
+
+```js
+const [value, setValue] = useState("");
+
+<input value={value} onChange={e => setValue(e.target.value)} />
+```
+
+* Every keystroke **updates state**, triggering a **re-render** of the component.
+* For large forms or high-frequency inputs, this can cause unnecessary re-renders.
+
+With `useRef`:
+
+* **No re-renders** occur when the input value changes
+* You only read the value **on demand** (when the button is clicked)
+* More efficient for simple uncontrolled inputs like this
+
+---
+
+### **3️⃣ So basically**
+
+| Approach   | Behavior                                         | When to use                            |
+| ---------- | ------------------------------------------------ | -------------------------------------- |
+| `useState` | Controlled input → re-renders on every keystroke | When you need to react to every change |
+| `useRef`   | Uncontrolled input → no re-render on typing      | When you just need the value on submit |
+
+---
+
+✅ **Summary:**
+`useRef` is used here because:
+
+* We don’t care about updating the UI on every keystroke.
+* We only need the input’s value when adding a todo.
+* It avoids unnecessary re-renders, making it more efficient.
+
+---
+
+If you want, I can also **rewrite this component using `useState`** so you can **see the difference in behavior visually**.
+
+Do you want me to do that?
+
+*/
